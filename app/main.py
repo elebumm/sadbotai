@@ -21,7 +21,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-client = boto3.client("comprehend")
+client = boto3.client(
+    "comprehend",
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+    aws_access_key_secret=os.getenv("AWS_SECRET_ACCESS_KEY"),
+    aws_region_name="us-east-1",
+)
 
 
 @app.post("/")
